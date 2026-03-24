@@ -1,3 +1,4 @@
+CREATE DATABASE IF NOT EXISTS talent_matching;
 USE talent_matching;
 
 INSERT INTO users (email, password, role) VALUES
