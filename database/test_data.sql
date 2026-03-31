@@ -1,3 +1,4 @@
+CREATE DATABASE IF NOT EXISTS talent_matching;
 USE talent_matching;
 
 INSERT INTO users (email, password, role) VALUES
@@ -28,4 +29,5 @@ INSERT INTO job_postings (employer_id, job_title, company_name, description, req
 (7, 'Frontend Developer',     'StartupX', 'Build React UI for fintech app', 'Bachelor', 'React,JavaScript,CSS', 1, 'Remote', 'Melbourne'),
 (7, 'Data Analyst',           'StartupX', 'Analyse customer transaction data', 'Master', 'Python,SQL,Excel', 3, 'Onsite', 'Melbourne'),
 (8, 'Database Administrator', 'Big Bank', 'Manage and optimise bank databases', 'Bachelor', 'MySQL,PostgreSQL,SQL', 4, 'Onsite', 'Brisbane'),
+(8, 'ML Engineer',            'Big Bank', 'Build machine learning pipelines', 'Master', 'Python,Machine Learning,SQL', 3, 'Hybrid', 'Sydney');
 (8, 'ML Engineer',            'Big Bank', 'Build machine learning pipelines', 'Master', 'Python,Machine Learning,SQL', 3, 'Hybrid', 'Sydney');
