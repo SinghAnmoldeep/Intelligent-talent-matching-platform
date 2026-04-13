@@ -1,0 +1,312 @@
+/* =============================================
+   profile.css
+   Candidate Profile Page
+   Reuses: style.css (vars), dashboard.css (navbar, dashboard-body, dashboard-main)
+   ============================================= */
+
+/* ---- Page Header Card ---- */
+.profile-header-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 28px 32px;
+}
+
+.profile-header-card h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.profile-header-card p {
+  font-size: 13.5px;
+  color: var(--color-muted);
+}
+
+/* ---- Section Cards ---- */
+.profile-section-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile-section-header {
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 14px;
+}
+
+.profile-section-header h2 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 3px;
+}
+
+.profile-section-header p {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+/* ---- Form Grid ---- */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group.full-width {
+  grid-column: 1 / -1;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 13.5px;
+  color: var(--color-text);
+  background: #f9fafb;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+  outline: none;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(80, 70, 229, 0.1);
+  background: #fff;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: #9ca3af;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.6;
+}
+
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+/* ---- Skills Section ---- */
+.skills-input-row {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.skills-input-row .form-input {
+  flex: 1;
+}
+
+.btn-add-skill {
+  padding: 10px 18px;
+  background: var(--color-text);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.btn-add-skill:hover {
+  background: #1f2937;
+}
+
+.skills-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 20px;
+}
+
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.skill-pill button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-muted);
+  font-size: 15px;
+  line-height: 1;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: color 0.12s;
+}
+
+.skill-pill button:hover {
+  color: #ef4444;
+}
+
+/* ---- Resume Upload ---- */
+.resume-dropzone {
+  border: 2px dashed #d1d5db;
+  border-radius: 10px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  background: #fafafa;
+}
+
+.resume-dropzone:hover,
+.resume-dropzone.dragover {
+  border-color: var(--color-primary);
+  background: #f5f3ff;
+}
+
+.resume-dropzone input[type="file"] {
+  display: none;
+}
+
+.resume-dropzone-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.resume-dropzone-sub {
+  font-size: 12.5px;
+  color: var(--color-muted);
+}
+
+.resume-dropzone-hint {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 6px;
+}
+
+.resume-file-name {
+  font-size: 13px;
+  color: #16a34a;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+/* ---- Action Buttons Row ---- */
+.profile-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.btn-cancel {
+  padding: 11px 24px;
+  background: #fff;
+  color: var(--color-text);
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn-cancel:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.btn-save {
+  padding: 11px 24px;
+  background: var(--color-text);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btn-save:hover {
+  background: #1f2937;
+  transform: translateY(-1px);
+}
+
+/* ---- Toast notification ---- */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  background: #111827;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.toast.success { background: #16a34a; }
+.toast.error   { background: #dc2626; }
+
+/* ---- Responsive ---- */
+@media (max-width: 600px) {
+  .form-row { grid-template-columns: 1fr; }
+  .profile-section-card { padding: 20px 16px; }
+  .profile-header-card  { padding: 20px 16px; }
+  .profile-actions { flex-direction: column-reverse; }
+  .btn-cancel, .btn-save { width: 100%; text-align: center; }
+}
