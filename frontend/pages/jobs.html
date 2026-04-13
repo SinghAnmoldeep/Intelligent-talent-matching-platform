@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Browse Jobs – Talent Match</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/jobs.css">
+</head>
+<body class="dashboard-body">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="nav-logo">
+        <img src="/frontend/assets/Logo.png" alt="Talent Match Logo" class="logo-img">
+      </div>
+      <span class="nav-title">Talent Match</span>
+      <span class="nav-portal-badge">| Candidate Portal</span>
+    </div>
+    <div class="nav-links">
+      <a href="candidate-dashboard.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        Dashboard
+      </a>
+      <a href="jobs.html" class="nav-link active">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Jobs
+      </a>
+      <a href="recommendations.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+        Recommended
+      </a>
+      <a href="profile.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2" fill="none"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        Profile
+      </a>
+      <a href="../index.html" class="nav-link nav-logout" onclick="handleLogout()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Logout
+      </a>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="dashboard-main">
+
+    <div class="jobs-page-header">
+      <h1>Browse All Jobs</h1>
+      <p>Explore all available job opportunities</p>
+    </div>
+
+    <div class="search-box-wrap">
+      <h2>Search Jobs</h2>
+      <p>Find opportunities that match your skills</p>
+      <div class="search-row">
+        <div class="search-input-wrap">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="#9ca3af" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="#9ca3af" stroke-width="2" stroke-linecap="round"/></svg>
+          <input type="text" class="search-input" id="search-input" placeholder="Search by job title, company, or skills...">
+        </div>
+        <button class="btn-search" id="search-btn">Search</button>
+      </div>
+    </div>
+
+    <div>
+      <p class="jobs-count" id="jobs-count">Showing 8 jobs</p>
+    </div>
+
+    <div class="jobs-grid" id="jobs-grid">
+      <!-- populated by JS -->
+    </div>
+
+  </main>
+
+  <!-- APPLY MODAL -->
+  <div class="modal-overlay" id="apply-modal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><line x1="18" y1="6" x2="6" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="6" y1="6" x2="18" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <p class="modal-job-title" id="modal-title">–</p>
+      <p class="modal-company" id="modal-company">–</p>
+
+      <p class="modal-section-label">Job Details</p>
+      <div class="modal-meta-grid">
+        <div class="modal-meta-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="2"/></svg>
+          <span id="modal-location">–</span>
+        </div>
+        <div class="modal-meta-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span id="modal-type">–</span>
+        </div>
+        <div class="modal-meta-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><line x1="12" y1="1" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <span id="modal-salary">–</span>
+        </div>
+        <div class="modal-meta-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/><polyline points="12 6 12 12 16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span id="modal-exp">–</span>
+        </div>
+      </div>
+
+      <p class="modal-section-label">Description</p>
+      <p class="modal-desc-text" id="modal-desc">–</p>
+
+      <p class="modal-section-label">Required Skills</p>
+      <div class="skill-tags" id="modal-skills"></div>
+
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-modal-apply" id="modal-apply-btn">Apply Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+
+  <!-- config.js must define API_BASE_URL -->
+  <script src="../js/config.js"></script>
+  <script src="../js/jobs.js"></script>
+</body>
+</html>
