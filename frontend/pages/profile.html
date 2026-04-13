@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Profile – Talent Match</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/profile.css">
+</head>
+<body class="dashboard-body">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="nav-logo">
+        <img src="/frontend/assets/Logo.png" alt="Talent Match Logo" class="logo-img">
+      </div>
+      <span class="nav-title">Talent Match</span>
+      <span class="nav-portal-badge">| Candidate Portal</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="candidate-dashboard.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        Dashboard
+      </a>
+      <a href="jobs.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Jobs
+      </a>
+      <a href="recommendations.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+        Recommended
+      </a>
+      <a href="profile.html" class="nav-link active">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2" fill="none"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        Profile
+      </a>
+      <a href="../index.html" class="nav-link nav-logout" onclick="handleLogout(event)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Logout
+      </a>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="dashboard-main">
+
+    <!-- Page Header -->
+    <div class="profile-header-card">
+      <h1>My Profile</h1>
+      <p>Update your information to get better job recommendations</p>
+    </div>
+
+    <!-- ===== SECTION 1: Personal Information ===== -->
+    <div class="profile-section-card">
+      <div class="profile-section-header">
+        <h2>Personal Information</h2>
+        <p>Your basic contact and professional details</p>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="fullName">Full Name</label>
+          <input class="form-input" type="text" id="fullName" placeholder="John Doe" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="email">Email</label>
+          <input class="form-input" type="email" id="email" placeholder="john.doe@email.com" readonly />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="phone">Phone</label>
+          <input class="form-input" type="tel" id="phone" placeholder="+61 400 000 000" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="location">Location</label>
+          <input class="form-input" type="text" id="location" placeholder="Sydney, NSW" />
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SECTION 2: Professional Information ===== -->
+    <div class="profile-section-card">
+      <div class="profile-section-header">
+        <h2>Professional Information</h2>
+        <p>Your work experience and education</p>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="education">Education</label>
+          <select class="form-select" id="education">
+            <option value="">Select education level</option>
+            <option value="High School">High School</option>
+            <option value="Bachelor">Bachelor</option>
+            <option value="Master">Master</option>
+            <option value="PhD">PhD</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="experience">Years of Experience</label>
+          <input class="form-input" type="number" id="experience" placeholder="5" min="0" max="50" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label class="form-label" for="major">Major / Field of Study</label>
+          <input class="form-input" type="text" id="major" placeholder="Bachelor of Computer Science - University of Sydney" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label class="form-label" for="workMode">Preferred Work Mode</label>
+          <select class="form-select" id="workMode">
+            <option value="">Select work mode</option>
+            <option value="Remote">Remote</option>
+            <option value="Onsite">Onsite</option>
+            <option value="Hybrid">Hybrid</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label class="form-label" for="summary">Professional Summary</label>
+          <textarea class="form-textarea" id="summary"
+            placeholder="Passionate developer with extensive experience in modern web technologies."
+            rows="4"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SECTION 3: Skills ===== -->
+    <div class="profile-section-card">
+      <div class="profile-section-header">
+        <h2>Skills</h2>
+        <p>Add your technical and professional skills</p>
+      </div>
+
+      <div class="skills-input-row">
+        <input
+          class="form-input"
+          type="text"
+          id="skillInput"
+          placeholder="Add a skill (e.g., React, Python, etc.)"
+        />
+        <button class="btn-add-skill" type="button" onclick="addSkill()">Add</button>
+      </div>
+
+      <div class="skills-tags" id="skillsTags">
+        <!-- Skills rendered by profile.js -->
+      </div>
+    </div>
+
+    <!-- ===== SECTION 4: Resume ===== -->
+    <div class="profile-section-card">
+      <div class="profile-section-header">
+        <h2>Resume</h2>
+        <p>Upload your latest resume (PDF or DOC)</p>
+      </div>
+
+      <div class="resume-dropzone" id="resumeDropzone">
+        <input type="file" id="resumeInput" accept=".pdf,.doc,.docx" />
+        <p class="resume-dropzone-text">Click to upload resume</p>
+        <p class="resume-dropzone-sub">or drag and drop</p>
+        <p class="resume-dropzone-hint">PDF, DOC, DOCX up to 10MB</p>
+        <p class="resume-file-name" id="resumeFileName"></p>
+      </div>
+    </div>
+
+    <!-- ===== ACTION BUTTONS ===== -->
+    <div class="profile-actions">
+      <button class="btn-cancel" type="button" onclick="handleCancel()">Cancel</button>
+      <button class="btn-save"   type="button" onclick="saveProfile()">Save Profile</button>
+    </div>
+
+  </main>
+
+  <!-- Toast notification -->
+  <div class="toast" id="toast"></div>
+
+  <script src="../js/profile.js"></script>
+
+</body>
+</html>
