@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Candidate Dashboard – Talent Match</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body class="dashboard-body">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="nav-logo">
+        <img src="/frontend/assets/Logo.png" alt="Talent Match Logo" class="logo-img">
+      </div>
+      <span class="nav-title">Talent Match</span>
+      <span class="nav-portal-badge">| Candidate Portal</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="candidate-dashboard.html" class="nav-link active">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="currentColor" opacity="0.15"/><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        Dashboard
+      </a>
+      <a href="jobs.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Jobs
+      </a>
+      <a href="recommendations.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+        Recommended
+      </a>
+      <a href="profile.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2" fill="none"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        Profile
+      </a>
+      <a href="../index.html" class="nav-link nav-logout" onclick="handleLogout()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Logout
+      </a>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="dashboard-main">
+
+    <!-- Welcome Banner -->
+    <div class="welcome-banner">
+      <h1 class="welcome-title">Welcome back, <span id="user-name">John</span>!</h1>
+      <p class="welcome-sub">Discover your next career opportunity</p>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div>
+          <p class="stat-label">Applications Submitted</p>
+          <p class="stat-value" id="stat-applications">–</p>
+        </div>
+        <div class="stat-icon stat-icon--blue">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="4" y="2" width="16" height="20" rx="2" stroke="#5046e5" stroke-width="2" fill="none"/><line x1="8" y1="7" x2="16" y2="7" stroke="#5046e5" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="11" x2="16" y2="11" stroke="#5046e5" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="15" x2="12" y2="15" stroke="#5046e5" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div>
+          <p class="stat-label">Profile Views</p>
+          <p class="stat-value" id="stat-views">–</p>
+        </div>
+        <div class="stat-icon stat-icon--purple">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#7c3aed" stroke-width="2" fill="none"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div>
+          <p class="stat-label">Saved Jobs</p>
+          <p class="stat-value" id="stat-saved">–</p>
+        </div>
+        <div class="stat-icon stat-icon--yellow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="#d97706" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div>
+          <p class="stat-label">Recommended Jobs</p>
+          <p class="stat-value" id="stat-recommended">–</p>
+        </div>
+        <div class="stat-icon stat-icon--green">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="17 6 23 6 23 12" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <section class="section">
+      <h2 class="section-title">Quick Actions</h2>
+      <div class="actions-grid">
+        <a href="jobs.html" class="action-card">
+          <div class="action-icon action-icon--default">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="#374151" stroke-width="2" fill="none"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="#374151" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p class="action-title">Browse All Jobs</p>
+            <p class="action-desc">Explore all available job opportunities</p>
+          </div>
+        </a>
+        <a href="recommendations.html" class="action-card action-card--green">
+          <div class="action-icon action-icon--green">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="#059669" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <p class="action-title">Recommended Jobs</p>
+            <p class="action-desc">View your top 10 personalized job matches</p>
+          </div>
+        </a>
+        <a href="profile.html" class="action-card">
+          <div class="action-icon action-icon--default">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#374151" stroke-width="2" fill="none"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#374151" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+          </div>
+          <div>
+            <p class="action-title">My Profile</p>
+            <p class="action-desc">Update your profile and skills</p>
+          </div>
+        </a>
+        <a href="jobs.html?search=true" class="action-card">
+          <div class="action-icon action-icon--default">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="8" stroke="#374151" stroke-width="2"/><line x1="21" y1="21" x2="16.65" y2="16.65" stroke="#374151" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p class="action-title">Search Jobs</p>
+            <p class="action-desc">Search by keywords and filters</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Recent Activity -->
+    <section class="section">
+      <h2 class="section-title">Recent Activity</h2>
+      <p class="section-sub">Your latest actions on the platform</p>
+      <div class="activity-list" id="activity-list">
+        <!-- Populated by JS -->
+        <div class="activity-item">
+          <div class="activity-icon activity-icon--blue">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="#5046e5" stroke-width="2" fill="none"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="#5046e5" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div>
+            <p class="activity-title">Applied to Senior React Developer</p>
+            <p class="activity-meta">TechCorp Inc. · 2 hours ago</p>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon activity-icon--yellow">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="#d97706" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+          </div>
+          <div>
+            <p class="activity-title">Saved Full Stack Engineer position</p>
+            <p class="activity-meta">Innovate Labs · 1 day ago</p>
+          </div>
+        </div>
+        <div class="activity-item">
+          <div class="activity-icon activity-icon--purple">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#7c3aed" stroke-width="2" fill="none"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+          </div>
+          <div>
+            <p class="activity-title">Updated profile information</p>
+            <p class="activity-meta">3 days ago</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/candidate.js"></script>
+  
+
+</body>
+</html>
