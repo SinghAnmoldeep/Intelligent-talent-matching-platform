@@ -1,0 +1,241 @@
+/* =============================================
+   recommendations.css
+   Candidate Recommended Jobs Page
+   Reuses: style.css (vars, body), dashboard.css (navbar, section, badge)
+   ============================================= */
+
+/* ---- Hero Banner ---- */
+.rec-hero {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 14px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.rec-hero-icon {
+  width: 52px;
+  height: 52px;
+  background: #16a34a;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.rec-hero-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.rec-hero-sub {
+  font-size: 13.5px;
+  color: var(--color-muted);
+}
+
+/* ---- Info Box ---- */
+.rec-info-box {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 12px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.rec-info-box svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.rec-info-label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1d4ed8;
+  margin-bottom: 3px;
+}
+
+.rec-info-text {
+  font-size: 13px;
+  color: #3b82f6;
+  line-height: 1.5;
+}
+
+/* ---- Count Label ---- */
+.rec-count {
+  font-size: 14px;
+  color: var(--color-muted);
+  padding: 0 2px;
+}
+
+/* ---- Job Cards Grid ---- */
+.job-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.job-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 22px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+
+.job-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+  transform: translateY(-2px);
+}
+
+/* Card top row: title + match % */
+.job-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.job-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 2px;
+}
+
+.job-card-company {
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.match-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #16a34a;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Skills tags */
+.skills-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.skill-tag {
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Meta info row: location, type, salary, exp */
+.job-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 0;
+}
+
+.job-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+.job-meta-item svg {
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+/* Description snippet */
+.job-desc {
+  font-size: 13px;
+  color: var(--color-muted);
+  line-height: 1.5;
+}
+
+/* Apply button */
+.btn-apply {
+  width: 100%;
+  padding: 11px;
+  background: var(--color-text);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.btn-apply:hover {
+  background: #1f2937;
+  transform: translateY(-1px);
+}
+
+.btn-apply:active {
+  transform: translateY(0);
+}
+
+/* Empty / loading state */
+.rec-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-muted);
+  background: #fff;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+}
+
+.rec-empty p {
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.rec-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px;
+  gap: 10px;
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #e5e7eb;
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 700px) {
+  .job-cards-grid { grid-template-columns: 1fr; }
+  .rec-hero { flex-direction: column; text-align: center; }
+}
