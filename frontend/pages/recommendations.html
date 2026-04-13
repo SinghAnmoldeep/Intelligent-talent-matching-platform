@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recommended Jobs – Talent Match</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/recommendations.css">
+</head>
+<body class="dashboard-body">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="nav-logo">
+        <img src="/frontend/assets/Logo.png" alt="Talent Match Logo" class="logo-img">
+      </div>
+      <span class="nav-title">Talent Match</span>
+      <span class="nav-portal-badge">| Candidate Portal</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="candidate-dashboard.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        Dashboard
+      </a>
+      <a href="jobs.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Jobs
+      </a>
+      <a href="recommendations.html" class="nav-link active">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
+        Recommended
+      </a>
+      <a href="profile.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="2" fill="none"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+        Profile
+      </a>
+      <a href="../index.html" class="nav-link nav-logout" onclick="handleLogout(event)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Logout
+      </a>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="dashboard-main">
+
+    <!-- Hero Banner -->
+    <div class="rec-hero">
+      <div class="rec-hero-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+            stroke="white" stroke-width="2" fill="none" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <h1 class="rec-hero-title">Recommended Jobs for You ✨</h1>
+        <p class="rec-hero-sub">Based on your skills, experience, and preferences, we've found these perfect matches for you.</p>
+      </div>
+    </div>
+
+    <!-- How matching works info box -->
+    <div class="rec-info-box">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <polyline points="17 6 23 6 23 12" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <p class="rec-info-label">How we match you with jobs</p>
+        <p class="rec-info-text">Our intelligent matching algorithm analyzes your profile, skills, experience level, and preferences to recommend the top 10 jobs that best fit your career goals and qualifications.</p>
+      </div>
+    </div>
+
+    <!-- Count label -->
+    <p class="rec-count" id="rec-count-label">Loading recommendations...</p>
+
+    <!-- Job cards injected here by recommendations.js -->
+    <div id="jobs-container"></div>
+
+  </main>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/recommendations.js"></script>
+
+
+</body>
+</html>
