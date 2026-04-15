@@ -14,7 +14,7 @@ async function loadDashboardStats() {
 
     try {
     // Fetch recommended jobs count
-    const res = await fetch(`${API_BASE_URL}/api/recommendations/jobs`, {
+    const res = await fetch(`${API_BASE_URL}/recommendations/jobs`, {
         headers: { 'Authorization': 'Bearer ' + token }
     });
     if (res.ok) {

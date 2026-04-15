@@ -1,11 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("signupForm");
-
-  if (form) {
-    form.addEventListener("submit", signup);
-  }
-});
-
 async function signup(event) {
   event.preventDefault();
 
@@ -71,8 +63,9 @@ async function login(event) {
     console.log(result);
 
     if (result.token) {
-      // Save JWT
+      // Save JWT and role
       localStorage.setItem("token", result.token);
+      localStorage.setItem("userRole", result.role);
     }
 
     if (result.role) {

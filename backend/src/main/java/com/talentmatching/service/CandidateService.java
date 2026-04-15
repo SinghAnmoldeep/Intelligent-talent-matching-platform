@@ -51,6 +51,7 @@ public class CandidateService {
         profile.setSkills(request.getSkills());
         profile.setPreferredLocation(request.getPreferredLocation());
         profile.setPreferredWorkMode(request.getPreferredWorkMode());
+        profile.setResumeText(request.getResumeText());
 
         candidateProfileRepository.save(profile);
 

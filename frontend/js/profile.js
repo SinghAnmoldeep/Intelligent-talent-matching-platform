@@ -3,8 +3,6 @@
 // Candidate Profile Page
 // =============================================
 
-const API_BASE_URL = 'http://localhost:8080';
-
 let skills = [];
 
 // ---- On load ----
@@ -20,7 +18,7 @@ async function loadProfile() {
   if (!token) return;
 
   try {
-    const res = await fetch(`${API_BASE_URL}/api/candidate/profile`, {
+    const res = await fetch(`${API_BASE_URL}/candidate/profile`, {
       headers: { 'Authorization': 'Bearer ' + token }
     });
 
@@ -84,7 +82,7 @@ async function saveProfile() {
   }
 
   try {
-    const res = await fetch(`${API_BASE_URL}/api/candidate/profile`, {
+    const res = await fetch(`${API_BASE_URL}/candidate/profile`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -201,43 +199,9 @@ function handleFile(file) {
   showToast('Resume selected: ' + file.name, 'success');
 }
 
-// ---- Toast ----
-function showToast(msg, type = '') {
-  const toast = document.getElementById('toast');
-  toast.textContent = msg;
-  toast.className = 'toast ' + type;
-  // Force reflow to restart animation
-  void toast.offsetWidth;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 3200);
-}
-
-// ---- Helpers ----
-function setVal(id, val) {
-  const el = document.getElementById(id);
-  if (el) el.value = val;
-}
-
-function getVal(id) {
-  const el = document.getElementById(id);
-  return el ? el.value.trim() : '';
-}
-
-function escHtml(str) {
-  const d = document.createElement('div');
-  d.textContent = str;
-  return d.innerHTML;
-}
-
 function handleCancel() {
   if (confirm('Discard unsaved changes?')) {
     window.location.href = 'candidate-dashboard.html';
   }
 }
 
-function handleLogout(e) {
-  e.preventDefault();
-  localStorage.clear();
-  sessionStorage.clear();
-  window.location.href = '../index.html';
-}

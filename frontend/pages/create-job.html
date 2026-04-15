@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Post a Job – Talent Match</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/profile.css">
+</head>
+<body class="dashboard-body">
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="nav-logo">
+        <img src="/frontend/assets/Logo.png" alt="Talent Match Logo" class="logo-img">
+      </div>
+      <span class="nav-title">Talent Match</span>
+      <span class="nav-portal-badge">| Employer Portal</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="employer-dashboard.html" class="nav-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        Dashboard
+      </a>
+      <a href="create-job.html" class="nav-link active">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Post a Job
+      </a>
+      <a href="../index.html" class="nav-link nav-logout" onclick="handleLogout(event)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Logout
+      </a>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="dashboard-main">
+
+    <!-- Page Header -->
+    <div class="profile-header-card">
+      <h1>Post a New Job</h1>
+      <p>Fill in the details below to attract the best-matched candidates</p>
+    </div>
+
+    <!-- ===== SECTION 1: Basic Details ===== -->
+    <div class="profile-section-card">
+      <div class="profile-section-header">
+        <h2>Job Details</h2>
+        <p>Basic information about the role</p>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="jobTitle">Job Title</label>
+          <input class="form-input" type="text" id="jobTitle" placeholder="e.g. Senior Backend Developer" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="companyName">Company Name</label>
+          <input class="form-input" type="text" id="companyName" placeholder="e.g. TechCorp Inc." required />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="location">Location</label>
+          <input class="form-input" type="text" id="location" placeholder="e.g. Sydney, NSW" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="workMode">Work Mode</label>
+          <select class="form-select" id="workMode">
+            <option value="">Select work mode</option>
+            <option value="Remote">Remote</option>
+            <option value="Onsite">Onsite</option>
+            <option value="Hybrid">Hybrid</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="salaryRange">Salary Range (optional)</label>
+          <input class="form-input" type="text" id="salaryRange" placeholder="e.g. $100,000 – $130,000" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="yearsOfExperience">Years of Experience Required</label>
+          <input class="form-input" type="number" id="yearsOfExperience" placeholder="e.g. 3" min="0" max="30" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label class="form-label" for="description">Job Description</label>
+          <textarea class="form-textarea" id="description" rows="5"
+            placeholder="Describe the role, responsibilities, and what makes this opportunity unique..."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== SECTION 2: Requirements ===== -->
+    <div class="profile-section-card">
+      <div class="profile-section-header">
+        <h2>Requirements</h2>
+        <p>Education and skills needed for this role</p>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label class="form-label" for="requiredEducation">Minimum Education</label>
+          <select class="form-select" id="requiredEducation">
+            <option value="">Select education level</option>
+            <option value="High School">High School</option>
+            <option value="Bachelor">Bachelor</option>
+            <option value="Master">Master</option>
+            <option value="PhD">PhD</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Skills input -->
+      <div class="profile-section-header section-header--flush">
+        <h3 class="form-label">Required Skills</h3>
+        <p class="section-hint">Add skills one at a time or comma-separated</p>
+      </div>
+      <div class="skills-input-row">
+        <input
+          class="form-input"
+          type="text"
+          id="skillInput"
+          placeholder="e.g. Java, React, Docker"
+          aria-label="Add a required skill"
+        />
+        <button type="button" class="btn-add-skill" onclick="addSkill()">Add</button>
+      </div>
+      <div class="skills-tags" id="skillsTags" aria-label="Required skills"></div>
+    </div>
+
+    <!-- ===== ACTION BUTTONS ===== -->
+    <div class="profile-actions">
+      <button type="button" class="btn-cancel" onclick="handleCancel()">Cancel</button>
+      <button type="button" class="btn-save" onclick="submitJob()">Post Job</button>
+    </div>
+
+  </main>
+
+  <!-- Toast -->
+  <output class="toast" id="toast" aria-live="polite"></output>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/utils.js"></script>
+  <script src="../js/employer.js"></script>
+
+</body>
+</html>

@@ -3,8 +3,6 @@
 // Candidate — Recommended Jobs Page
 // =============================================
 
-const API_BASE_URL = 'http://localhost:8080';
-
 // Fallback demo data shown when backend is offline
 const DEMO_JOBS = [
   {
@@ -80,7 +78,7 @@ async function loadRecommendations() {
   }
 
   try {
-    const res = await fetch(`${API_BASE_URL}/api/recommendations/jobs`, {
+    const res = await fetch(`${API_BASE_URL}/recommendations/jobs`, {
       headers: { 'Authorization': 'Bearer ' + token }
     });
 

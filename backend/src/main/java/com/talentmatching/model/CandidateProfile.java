@@ -43,6 +43,10 @@ public class CandidateProfile {
     // Preferred work mode: remote / onsite / hybrid
     private String preferredWorkMode;
 
+    // Candidate's professional summary / resume text
+    @Column(length = 5000)
+    private String resumeText;
+
     // Default constructor required by JPA
     public CandidateProfile() {
     }
@@ -149,5 +153,15 @@ public class CandidateProfile {
     // Setter for preferredWorkMode
     public void setPreferredWorkMode(String preferredWorkMode) {
         this.preferredWorkMode = preferredWorkMode;
+    }
+
+    // Getter for resumeText
+    public String getResumeText() {
+        return resumeText;
+    }
+
+    // Setter for resumeText
+    public void setResumeText(String resumeText) {
+        this.resumeText = resumeText;
     }
 }

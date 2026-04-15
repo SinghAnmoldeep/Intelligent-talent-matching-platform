@@ -10,6 +10,7 @@ public class CandidateProfileRequest {
     private String skills;
     private String preferredLocation;
     private String preferredWorkMode;
+    private String resumeText;
 
     // Getters and Setters
 
@@ -67,5 +68,13 @@ public class CandidateProfileRequest {
 
     public void setPreferredWorkMode(String preferredWorkMode) {
         this.preferredWorkMode = preferredWorkMode;
+    }
+
+    public String getResumeText() {
+        return resumeText;
+    }
+
+    public void setResumeText(String resumeText) {
+        this.resumeText = resumeText;
     }
 }
