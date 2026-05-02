@@ -4,16 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Employer Dashboard – Talent Match</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/dashboard.css">
-  <link rel="stylesheet" href="../css/forms.css">
+  <link rel="stylesheet" href="../css/employer.css">
 </head>
+
 <body class="dashboard-body">
 
-  <!-- ===== NAVBAR ===== -->
   <nav class="navbar">
     <div class="nav-brand">
       <div class="nav-logo">
@@ -24,140 +26,123 @@
     </div>
 
     <div class="nav-links">
-      <a href="employer-dashboard.html" class="nav-link active">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="currentColor" opacity="0.15"/><rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="3" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="14" y="14" width="7" height="7" rx="1" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-        Dashboard
-      </a>
-      <a href="create-job.html" class="nav-link">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/><line x1="12" y1="8" x2="12" y2="16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        Post a Job
-      </a>
-      <a href="../index.html" class="nav-link nav-logout" onclick="handleLogout(event)">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><polyline points="16 17 21 12 16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><line x1="21" y1="12" x2="9" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-        Logout
-      </a>
+      <a href="employer-dashboard.html" class="nav-link active">Dashboard</a>
+      <a href="employer-candidates.html" class="nav-link">Candidates</a>
+      <a href="employer-recommendations.html" class="nav-link">Recommended</a>
+      <a href="create-job.html" class="nav-link">Post Job</a>
+      <a href="../index.html" class="nav-link nav-logout" onclick="handleLogout(event)">Logout</a>
     </div>
   </nav>
 
-  <!-- ===== MAIN CONTENT ===== -->
   <main class="dashboard-main">
 
-    <!-- Welcome Banner -->
     <div class="welcome-banner">
-      <h1 class="welcome-title">Welcome, <span id="company-name">Your Company</span>!</h1>
-      <p class="welcome-sub">Manage your job listings and find the best talent</p>
+      <h1 class="welcome-title">Welcome back, <span id="company-name">TechCorp</span>!</h1>
+      <p class="welcome-sub">Find the perfect candidates for your team</p>
     </div>
 
-    <!-- Stats Row -->
     <div class="stats-grid">
       <div class="stat-card">
         <div>
           <p class="stat-label">Active Job Posts</p>
-          <p class="stat-value" id="stat-jobs">–</p>
+          <p class="stat-value" id="stat-jobs">8</p>
         </div>
-        <div class="stat-icon stat-icon--blue">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="#5046e5" stroke-width="2" fill="none"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="#5046e5" stroke-width="2" stroke-linecap="round"/></svg>
-        </div>
+        <div class="stat-icon stat-icon--blue">💼</div>
       </div>
+
       <div class="stat-card">
         <div>
           <p class="stat-label">Total Applicants</p>
-          <p class="stat-value" id="stat-applicants">–</p>
+          <p class="stat-value" id="stat-applicants">156</p>
         </div>
-        <div class="stat-icon stat-icon--purple">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#7c3aed" stroke-width="2" fill="none"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-        </div>
+        <div class="stat-icon stat-icon--purple">👥</div>
       </div>
+
       <div class="stat-card">
         <div>
-          <p class="stat-label">Matched Candidates</p>
-          <p class="stat-value" id="stat-matched">–</p>
+          <p class="stat-label">Interviews Scheduled</p>
+          <p class="stat-value" id="stat-interviews">12</p>
         </div>
-        <div class="stat-icon stat-icon--green">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><polyline points="17 6 23 6 23 12" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </div>
+        <div class="stat-icon stat-icon--yellow">📄</div>
       </div>
+
       <div class="stat-card">
         <div>
-          <p class="stat-label">Profile Views</p>
-          <p class="stat-value" id="stat-views">–</p>
+          <p class="stat-label">Recommended Candidates</p>
+          <p class="stat-value" id="stat-recommended">10</p>
         </div>
-        <div class="stat-icon stat-icon--yellow">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="#d97706" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="3" stroke="#d97706" stroke-width="2" fill="none"/></svg>
-        </div>
+        <div class="stat-icon stat-icon--green">↗</div>
       </div>
     </div>
 
-    <!-- Quick Actions -->
     <section class="section">
       <h2 class="section-title">Quick Actions</h2>
-      <div class="actions-grid">
-        <a href="create-job.html" class="action-card action-card--green">
-          <div class="action-icon action-icon--green">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#059669" stroke-width="2" fill="none"/><line x1="12" y1="8" x2="12" y2="16" stroke="#059669" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="12" x2="16" y2="12" stroke="#059669" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
+
+      <div class="employer-actions-grid">
+
+        <a href="candidates.html" class="employer-action-card employer-action-blue">
+          <div class="action-icon action-icon--default">👥</div>
           <div>
-            <p class="action-title">Post a New Job</p>
-            <p class="action-desc">Create a new job listing to attract candidates</p>
+            <p class="action-title">Browse All Candidates</p>
+            <p class="action-desc">Explore all candidate profiles</p>
           </div>
         </a>
-        <a href="#candidates-section" class="action-card">
-          <div class="action-icon action-icon--default">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="#374151" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
-          </div>
+
+        <a href="employer-recommendations.html" class="employer-action-card employer-action-green">
+          <div class="action-icon action-icon--default">☆</div>
           <div>
-            <p class="action-title">Top Candidates</p>
-            <p class="action-desc">View AI-matched candidates for your roles</p>
+            <p class="action-title">Recommended Candidates</p>
+            <p class="action-desc">View your top 10 candidate matches</p>
           </div>
         </a>
-        <a href="#my-jobs" class="action-card">
-          <div class="action-icon action-icon--default">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="#374151" stroke-width="2" fill="none"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="#374151" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
+
+        <a href="create-job.html" class="employer-action-card employer-action-purple">
+          <div class="action-icon action-icon--default">💼</div>
           <div>
-            <p class="action-title">My Job Listings</p>
-            <p class="action-desc">View and manage all your posted jobs</p>
+            <p class="action-title">Post a Job</p>
+            <p class="action-desc">Create a new job listing</p>
           </div>
         </a>
-        <button type="button" class="action-card" onclick="openProfileModal()">
-          <div class="action-icon action-icon--default">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke="#374151" stroke-width="2" fill="none"/><polyline points="9 22 9 12 15 12 15 22" stroke="#374151" stroke-width="2"/></svg>
-          </div>
+
+        <a href="candidates.html?search=true" class="employer-action-card employer-action-sky">
+          <div class="action-icon action-icon--default">🔍</div>
           <div>
-            <p class="action-title">Company Profile</p>
-            <p class="action-desc">Update your company info and preferences</p>
+            <p class="action-title">Search Candidates</p>
+            <p class="action-desc">Search by skills and experience</p>
           </div>
-        </button>
+        </a>
+
       </div>
     </section>
 
-    <!-- My Job Listings -->
-    <section class="section" id="my-jobs">
-      <h2 class="section-title">My Job Listings</h2>
-      <p class="section-sub">Jobs you have posted on the platform</p>
-      <div id="jobs-list" class="activity-list">
+    <section class="section">
+      <div class="activity-list employer-activity">
+        <div class="activity-header">
+          <h2 class="section-title">Recent Activity</h2>
+          <p class="section-sub">Your latest actions on the platform</p>
+        </div>
+
         <div class="activity-item">
-          <div class="activity-icon activity-icon--blue">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="#5046e5" stroke-width="2" fill="none"/></svg>
-          </div>
+          <div class="activity-icon activity-icon--blue">💼</div>
           <div>
-            <p class="activity-title">Loading your job listings...</p>
+            <p class="activity-title">Posted Senior React Developer position</p>
+            <p class="activity-meta">2 hours ago · 24 applicants</p>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Top Matched Candidates -->
-    <section class="section" id="candidates-section">
-      <h2 class="section-title">Top Matched Candidates</h2>
-      <p class="section-sub">AI-recommended candidates based on your job requirements</p>
-      <div id="candidates-list" class="activity-list">
         <div class="activity-item">
-          <div class="activity-icon activity-icon--green">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#059669" stroke-width="2" fill="none"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#059669" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-          </div>
+          <div class="activity-icon activity-icon--yellow">📄</div>
           <div>
-            <p class="activity-title">Loading top candidates...</p>
+            <p class="activity-title">Interview scheduled with Sarah Johnson</p>
+            <p class="activity-meta">Full Stack Engineer · Tomorrow at 2:00 PM</p>
+          </div>
+        </div>
+
+        <div class="activity-item">
+          <div class="activity-icon activity-icon--purple">👥</div>
+          <div>
+            <p class="activity-title">Reviewed 15 candidate profiles</p>
+            <p class="activity-meta">3 days ago</p>
           </div>
         </div>
       </div>
@@ -165,34 +150,7 @@
 
   </main>
 
-  <!-- ===== Company Profile Modal ===== -->
-  <dialog id="profile-modal" class="modal-dialog" aria-labelledby="profile-modal-title">
-    <div class="modal-header">
-      <h2 id="profile-modal-title">Company Profile</h2>
-      <button type="button" class="modal-close" onclick="closeProfileModal()" aria-label="Close modal">&times;</button>
-    </div>
-    <div class="modal-body">
-      <div class="form-group modal-field">
-        <label class="form-label" for="profile-company">Company Name</label>
-        <input class="form-input" type="text" id="profile-company" placeholder="TechCorp Inc." />
-      </div>
-      <div class="form-group modal-field">
-        <label class="form-label" for="profile-email">Contact Email</label>
-        <input class="form-input" type="email" id="profile-email" placeholder="hr@company.com" />
-      </div>
-      <div class="form-group modal-field">
-        <label class="form-label" for="profile-industry">Industry</label>
-        <input class="form-input" type="text" id="profile-industry" placeholder="Software, Finance, Healthcare..." />
-      </div>
-      <button type="button" class="btn-save btn-full" onclick="saveCompanyProfile()">Save Profile</button>
-    </div>
-  </dialog>
-
-  <!-- Toast -->
-  <output class="toast" id="toast" aria-live="polite"></output>
-
   <script src="../js/config.js"></script>
-  <script src="../js/utils.js"></script>
   <script src="../js/employer.js"></script>
 
 </body>

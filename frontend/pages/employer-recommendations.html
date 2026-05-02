@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recommended Candidates – Talent Match</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/Employer-recommendations.css">
+  <link rel="stylesheet" href="../css/jobs.css">
+</head>
+
+<body class="dashboard-body">
+
+  <nav class="navbar">
+    <div class="nav-brand">
+      <div class="nav-logo">
+        <img src="/frontend/assets/Logo.png" alt="Talent Match Logo" class="logo-img">
+      </div>
+      <span class="nav-title">Talent Match</span>
+      <span class="nav-portal-badge">| Employer Portal</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="employer-dashboard.html" class="nav-link">Dashboard</a>
+      <a href="Employer-candidates.html" class="nav-link">Candidates</a>
+      <a href="Employer-recommendations.html" class="nav-link active">Recommended</a>
+      <a href="create-job.html" class="nav-link">Post Job</a>
+      <a href="../index.html" class="nav-link nav-logout" onclick="handleLogout(event)">Logout</a>
+    </div>
+  </nav>
+
+  <main class="dashboard-main">
+
+    <div class="emp-rec-hero">
+      <div class="emp-rec-icon">☆</div>
+      <div>
+        <h1>Recommended Candidates for You ✨</h1>
+        <p>Based on your job requirements and preferences, we've found these best matches.</p>
+      </div>
+    </div>
+
+    <div class="emp-rec-info">
+      <span>↗</span>
+      <div>
+        <p class="emp-rec-info-title">How we match you with candidates</p>
+        <p class="emp-rec-info-text">
+          Our intelligent matching algorithm analyzes your job requirements, company culture,
+          and preferences to recommend the top 10 candidates that best fit your hiring needs.
+        </p>
+      </div>
+    </div>
+
+    <p class="emp-rec-count" id="emp-rec-count">
+      Showing top 10 recommended candidates
+    </p>
+
+    <div class="emp-rec-grid" id="emp-rec-grid">
+      <!-- rendered by JS -->
+    </div>
+
+  </main>
+
+  <!-- VIEW PROFILE MODAL -->
+  <div class="modal-overlay" id="profile-modal">
+    <div class="modal">
+
+      <button class="modal-close" onclick="closeProfileModal()">✕</button>
+
+      <p class="modal-job-title" id="profile-name">–</p>
+      <p class="modal-company" id="profile-title">–</p>
+
+      <p class="modal-section-label">Profile Summary</p>
+      <p class="modal-desc-text" id="profile-summary">–</p>
+
+      <p class="modal-section-label">Skills</p>
+      <div class="skill-tags" id="profile-skills"></div>
+
+      <p class="modal-section-label">Details</p>
+      <div class="modal-meta-grid">
+        <div class="modal-meta-item">📍 <span id="profile-location">–</span></div>
+        <div class="modal-meta-item">💼 <span id="profile-exp">–</span></div>
+        <div class="modal-meta-item">✉️ <span id="profile-email">–</span></div>
+        <div class="modal-meta-item">📞 <span id="profile-phone">–</span></div>
+      </div>
+
+      <p class="modal-section-label">Education</p>
+      <p class="modal-desc-text" id="profile-education">–</p>
+
+      <div class="modal-actions">
+        <button class="btn-modal-cancel" onclick="closeProfileModal()">Close</button>
+        <button class="btn-modal-apply" id="contact-btn">Contact</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../js/config.js"></script>
+  <script src="../js/Employer-recommendations.js"></script>
+
+</body>
+</html>
