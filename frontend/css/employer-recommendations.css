@@ -1,0 +1,243 @@
+/* =============================================
+   Employer-recommendations.css
+   Employer Recommended Candidates Page
+   ============================================= */
+
+.emp-rec-hero {
+  background: #ecfdf5;
+  border: 1px solid #bbf7d0;
+  border-radius: 14px;
+  padding: 24px 28px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.emp-rec-icon {
+  width: 52px;
+  height: 52px;
+  background: #16a34a;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 34px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.emp-rec-hero h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 5px;
+}
+
+.emp-rec-hero p {
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.emp-rec-info {
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 12px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.emp-rec-info span {
+  color: #4f46e5;
+  font-weight: 700;
+  font-size: 16px;
+  margin-top: 1px;
+}
+
+.emp-rec-info-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #4338ca;
+  margin-bottom: 4px;
+}
+
+.emp-rec-info-text {
+  font-size: 13px;
+  color: #4f46e5;
+  line-height: 1.5;
+}
+
+.emp-rec-count {
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.emp-rec-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.emp-candidate-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 26px 24px 22px;
+}
+
+.emp-card-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.emp-candidate-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.emp-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #e0e7ff;
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.emp-candidate-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.emp-candidate-title {
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+.emp-match-badge {
+  background: #dcfce7;
+  color: #16a34a;
+  border-radius: 20px;
+  padding: 5px 11px;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  height: fit-content;
+}
+
+.emp-summary {
+  font-size: 13px;
+  color: #374151;
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+
+.emp-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.emp-skill {
+  background: #f3f4f6;
+  border-radius: 7px;
+  padding: 4px 8px;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #374151;
+}
+
+.emp-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px 18px;
+  margin-bottom: 18px;
+}
+
+.emp-info-item {
+  font-size: 13px;
+  color: var(--color-muted);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.emp-education {
+  grid-column: 1 / -1;
+}
+
+.emp-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.emp-btn-view,
+.emp-btn-contact {
+  height: 40px;
+  border-radius: 8px;
+  font-family: var(--font-main);
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.emp-btn-view {
+  background: var(--color-text);
+  color: #fff;
+  border: none;
+}
+
+.emp-btn-view:hover {
+  background: #1f2937;
+}
+
+.emp-btn-contact {
+  background: #fff;
+  color: var(--color-text);
+  border: 1px solid #e5e7eb;
+}
+
+.emp-btn-contact:hover {
+  background: #f9fafb;
+}
+
+@media (max-width: 768px) {
+  .emp-rec-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .emp-rec-hero {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 520px) {
+  .emp-rec-hero {
+    flex-direction: column;
+  }
+
+  .emp-card-top {
+    flex-direction: column;
+  }
+
+  .emp-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .emp-actions {
+    grid-template-columns: 1fr;
+  }
+}

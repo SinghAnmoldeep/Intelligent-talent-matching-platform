@@ -1,0 +1,77 @@
+/* =============================================
+   employer.css — Employer Dashboard
+   ============================================= */
+
+.employer-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.employer-action-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 22px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--color-text);
+  border: 1px solid #e5e7eb;
+  transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+}
+
+.employer-action-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+  transform: translateY(-1px);
+}
+
+.employer-action-blue {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+}
+
+.employer-action-green {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.employer-action-purple {
+  background: #faf5ff;
+  border-color: #e9d5ff;
+}
+
+.employer-action-sky {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.employer-activity {
+  padding-top: 0;
+}
+
+.activity-header {
+  padding: 18px 20px 10px;
+}
+
+.activity-header .section-title {
+  margin-bottom: 4px;
+}
+
+.activity-header .section-sub {
+  margin-top: 0;
+}
+
+.stat-icon {
+  font-size: 18px;
+}
+
+.activity-icon {
+  font-size: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .employer-actions-grid {
+    grid-template-columns: 1fr;
+  }
+}
