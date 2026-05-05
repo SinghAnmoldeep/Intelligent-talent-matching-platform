@@ -24,6 +24,10 @@ import java.util.stream.Collectors;
 @Service
 public class RecommendationService {
 
+    // Default cap for non-premium (BASIC) users.
+    // Spec: members get unlimited recs, non-members get top 10.
+    private static final int NON_MEMBER_CAP = 10;
+
     private final UserRepository userRepository;
     private final CandidateProfileRepository candidateProfileRepository;
     private final JobRepository jobRepository;
@@ -36,7 +40,8 @@ public class RecommendationService {
         this.jobRepository = jobRepository;
     }
 
-    // Return the top recommended jobs for the authenticated candidate
+    // Return the recommended jobs for the authenticated candidate.
+    // BASIC users -> capped at top 10. PREMIUM users -> unlimited.
     public List<RecommendationResponse> getRecommendedJobs(String email) {
 
         Optional<User> optionalUser = userRepository.findByEmail(email);
@@ -45,8 +50,10 @@ public class RecommendationService {
             return Collections.emptyList();
         }
 
+        User user = optionalUser.get();
+
         Optional<CandidateProfile> optionalProfile =
-                candidateProfileRepository.findByUser(optionalUser.get());
+                candidateProfileRepository.findByUser(user);
 
         if (optionalProfile.isEmpty()) {
             return Collections.emptyList();
@@ -72,10 +79,11 @@ public class RecommendationService {
 
         recommendations.sort(Comparator.comparing(RecommendationResponse::getMatchScore).reversed());
 
-        return recommendations.stream().limit(10).collect(Collectors.toList());
+        return applyMembershipCap(recommendations, user);
     }
 
-    // Return the top recommended candidates for a specific employer job
+    // Return the recommended candidates for a specific employer job.
+    // BASIC employers -> capped at top 10. PREMIUM employers -> unlimited.
     public List<RecommendationResponse> getRecommendedCandidates(String email, Long jobId) {
 
         Optional<User> optionalUser = userRepository.findByEmail(email);
@@ -84,7 +92,9 @@ public class RecommendationService {
             return Collections.emptyList();
         }
 
-        Optional<Job> optionalJob = jobRepository.findByIdAndEmployer(jobId, optionalUser.get());
+        User employer = optionalUser.get();
+
+        Optional<Job> optionalJob = jobRepository.findByIdAndEmployer(jobId, employer);
 
         if (optionalJob.isEmpty()) {
             return Collections.emptyList();
@@ -110,7 +120,17 @@ public class RecommendationService {
 
         recommendations.sort(Comparator.comparing(RecommendationResponse::getMatchScore).reversed());
 
-        return recommendations.stream().limit(10).collect(Collectors.toList());
+        return applyMembershipCap(recommendations, employer);
+    }
+
+    // Apply the membership-aware cap.
+    // PREMIUM (active) -> return all matches.
+    // BASIC (or expired premium) -> return at most NON_MEMBER_CAP.
+    private List<RecommendationResponse> applyMembershipCap(List<RecommendationResponse> ranked, User user) {
+        if (user.isPremiumMember()) {
+            return ranked;
+        }
+        return ranked.stream().limit(NON_MEMBER_CAP).collect(Collectors.toList());
     }
 
     // Calculate recommendation score between a candidate profile and a job posting

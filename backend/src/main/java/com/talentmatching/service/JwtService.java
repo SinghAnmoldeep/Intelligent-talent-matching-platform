@@ -1,5 +1,6 @@
 package com.talentmatching.service;
 
+import com.talentmatching.model.MembershipStatus;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 
@@ -18,16 +19,39 @@ import java.util.Map;
 @Service
 public class JwtService {
 
+    // Claim key holding the user's membership tier (added in Week 8 change)
+    public static final String MEMBERSHIP_CLAIM = "membership";
+
     @Value("${jwt.secret}")
     private String secretKey;
 
     @Value("${jwt.expiration}")
     private long jwtExpiration;
 
-    // Generate token using email as subject
+    // Generate token using email as subject (legacy callers without membership info)
     public String generateToken(String email) {
+        return generateToken(email, MembershipStatus.BASIC);
+    }
+
+    // Generate token using email as subject and include the membership claim
+    public String generateToken(String email, MembershipStatus membershipStatus) {
         Map<String, Object> claims = new HashMap<>();
+        claims.put(MEMBERSHIP_CLAIM,
+                membershipStatus == null ? MembershipStatus.BASIC.name() : membershipStatus.name());
         return createToken(claims, email);
+    }
+
+    // Read the membership claim from a token. Defaults to BASIC if missing or unreadable.
+    public MembershipStatus extractMembership(String token) {
+        try {
+            Object value = extractAllClaims(token).get(MEMBERSHIP_CLAIM);
+            if (value == null) {
+                return MembershipStatus.BASIC;
+            }
+            return MembershipStatus.valueOf(value.toString());
+        } catch (Exception e) {
+            return MembershipStatus.BASIC;
+        }
     }
 
     // Create token with claims and subject

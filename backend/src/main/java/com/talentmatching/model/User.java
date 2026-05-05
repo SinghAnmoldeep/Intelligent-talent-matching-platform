@@ -3,6 +3,8 @@ package com.talentmatching.model;
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.time.LocalDate;
+
 // Entity represents a user account in the system
 @Entity
 @Table(name = "users")
@@ -31,6 +33,15 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
+    // Membership tier (Week 8 change). BASIC by default, PREMIUM for paid members.
+    @Enumerated(EnumType.STRING)
+    @Column(name = "membership_status", nullable = false)
+    private MembershipStatus membershipStatus = MembershipStatus.BASIC;
+
+    // Membership expiry date. Null when user is on BASIC tier.
+    @Column(name = "membership_expiry")
+    private LocalDate membershipExpiry;
+
     // Default constructor required by JPA
     public User() {
     }
@@ -41,6 +52,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.role = role;
+        this.membershipStatus = MembershipStatus.BASIC;
     }
 
     // Getter for id
@@ -91,5 +103,33 @@ public class User {
     // Setter for role
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    // Getter for membershipStatus
+    public MembershipStatus getMembershipStatus() {
+        return membershipStatus;
+    }
+
+    // Setter for membershipStatus
+    public void setMembershipStatus(MembershipStatus membershipStatus) {
+        this.membershipStatus = membershipStatus;
+    }
+
+    // Getter for membershipExpiry
+    public LocalDate getMembershipExpiry() {
+        return membershipExpiry;
+    }
+
+    // Setter for membershipExpiry
+    public void setMembershipExpiry(LocalDate membershipExpiry) {
+        this.membershipExpiry = membershipExpiry;
+    }
+
+    // Convenience method - returns true if the user is currently a paying premium member
+    public boolean isPremiumMember() {
+        if (membershipStatus != MembershipStatus.PREMIUM) {
+            return false;
+        }
+        return membershipExpiry == null || !membershipExpiry.isBefore(LocalDate.now());
     }
 }
