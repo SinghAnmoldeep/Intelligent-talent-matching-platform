@@ -5,7 +5,10 @@ CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    role ENUM('candidate', 'employer') NOT NULL,
+    role ENUM('CANDIDATE', 'EMPLOYER') NOT NULL,
+    -- Week 8 change - membership tier
+    membership_status ENUM('BASIC', 'PREMIUM') NOT NULL DEFAULT 'BASIC',
+    membership_expiry DATE NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -18,6 +21,10 @@ CREATE TABLE candidate_profiles (
     major VARCHAR(255),
     years_experience INT DEFAULT 0,
     skills TEXT,
+    -- Week 8 change - profile enhancement fields
+    work_experience TEXT NULL,
+    preferred_working_mode ENUM('REMOTE', 'ONSITE', 'HYBRID') NULL,
+    preferred_location VARCHAR(255) NULL,
     resume_text TEXT,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );

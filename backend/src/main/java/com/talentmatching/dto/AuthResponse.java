@@ -6,6 +6,8 @@ public class AuthResponse {
     private String message;
     private String token;
     private String role;
+    // Membership tier surfaced so the frontend can show badge / unlock UI immediately
+    private String membership;
 
     public AuthResponse() {
     }
@@ -19,6 +21,13 @@ public class AuthResponse {
         this.message = message;
         this.token = token;
         this.role = role;
+    }
+
+    public AuthResponse(String message, String token, String role, String membership) {
+        this.message = message;
+        this.token = token;
+        this.role = role;
+        this.membership = membership;
     }
 
     public String getMessage() {
@@ -43,5 +52,13 @@ public class AuthResponse {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getMembership() {
+        return membership;
+    }
+
+    public void setMembership(String membership) {
+        this.membership = membership;
     }
 }

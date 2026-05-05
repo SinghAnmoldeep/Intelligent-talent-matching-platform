@@ -1,3 +1,9 @@
+-- ============================================================
+-- Migration v2 - Week 8 Requirement Change (CSIT314 2nd Submission)
+-- Apply this on top of schema.sql for an existing v1 database.
+-- For fresh installs the new columns are already in schema.sql so this
+-- migration is idempotent only on EXISTING databases that lack the columns.
+-- ============================================================
 USE talent_matching;
 
 -- A. Candidate Profile Enhancement
