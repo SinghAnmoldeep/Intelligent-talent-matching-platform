@@ -49,6 +49,7 @@ public class CandidateService {
         profile.setMajor(request.getMajor());
         profile.setYearsOfExperience(request.getYearsOfExperience());
         profile.setSkills(request.getSkills());
+        profile.setWorkExperience(request.getWorkExperience());
         profile.setPreferredLocation(request.getPreferredLocation());
         profile.setPreferredWorkMode(request.getPreferredWorkMode());
         profile.setResumeText(request.getResumeText());

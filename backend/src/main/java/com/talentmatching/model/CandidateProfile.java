@@ -37,10 +37,16 @@ public class CandidateProfile {
     @Column(nullable = false, length = 1000)
     private String skills;
 
+    // Descriptive work experience added in Week 8 requirement change
+    @Column(name = "work_experience", length = 5000)
+    private String workExperience;
+
     // Preferred job location
+    @Column(name = "preferred_location")
     private String preferredLocation;
 
-    // Preferred work mode: remote / onsite / hybrid
+    // Preferred work mode: REMOTE / ONSITE / HYBRID
+    @Column(name = "preferred_working_mode")
     private String preferredWorkMode;
 
     // Candidate's professional summary / resume text
@@ -133,6 +139,16 @@ public class CandidateProfile {
     // Setter for skills
     public void setSkills(String skills) {
         this.skills = skills;
+    }
+
+    // Getter for workExperience
+    public String getWorkExperience() {
+        return workExperience;
+    }
+
+    // Setter for workExperience
+    public void setWorkExperience(String workExperience) {
+        this.workExperience = workExperience;
     }
 
     // Getter for preferredLocation

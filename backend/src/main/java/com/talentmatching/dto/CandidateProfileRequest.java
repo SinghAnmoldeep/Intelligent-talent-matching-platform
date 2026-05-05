@@ -8,6 +8,7 @@ public class CandidateProfileRequest {
     private String major;
     private Integer yearsOfExperience;
     private String skills;
+    private String workExperience;
     private String preferredLocation;
     private String preferredWorkMode;
     private String resumeText;
@@ -52,6 +53,14 @@ public class CandidateProfileRequest {
 
     public void setSkills(String skills) {
         this.skills = skills;
+    }
+
+    public String getWorkExperience() {
+        return workExperience;
+    }
+
+    public void setWorkExperience(String workExperience) {
+        this.workExperience = workExperience;
     }
 
     public String getPreferredLocation() {
