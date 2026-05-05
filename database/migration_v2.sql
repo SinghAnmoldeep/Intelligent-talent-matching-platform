@@ -10,13 +10,11 @@ USE talent_matching;
 --    Adds work_experience + preferred_working_mode + preferred_location
 --    so the matching algorithm can use them.
 ALTER TABLE candidate_profiles
-  ADD COLUMN work_experience          TEXT NULL                                AFTER skills,
-  ADD COLUMN preferred_working_mode   ENUM('REMOTE','ONSITE','HYBRID') NULL    AFTER work_experience,
-  ADD COLUMN preferred_location       VARCHAR(255) NULL                        AFTER preferred_working_mode;
+  ADD COLUMN work_experience          TEXT NULL                             AFTER skills,
+  ADD COLUMN preferred_working_mode   ENUM('REMOTE','ONSITE','HYBRID') NULL AFTER work_experience,
+  ADD COLUMN preferred_location       VARCHAR(255) NULL                     AFTER preferred_working_mode;
 
 -- B. Membership feature (BASIC default, PREMIUM for paid members).
---    NOTE: original v2 used MODIFY COLUMN here which fails on a fresh DB
---    because the column does not yet exist. Fixed to ADD COLUMN.
 ALTER TABLE users
   ADD COLUMN membership_status   ENUM('BASIC','PREMIUM') NOT NULL DEFAULT 'BASIC',
   ADD COLUMN membership_expiry   DATE NULL;
