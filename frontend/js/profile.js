@@ -36,6 +36,7 @@ async function loadProfile() {
     setVal('education',   data.education      || '');
     setVal('major',       data.major          || '');
     setVal('experience',  data.yearsOfExperience ?? '');
+    setVal('workExperience', data.workExperience || '');
     setVal('workMode',    data.preferredWorkMode || '');
     setVal('summary',     data.resumeText     || '');
 
@@ -54,6 +55,7 @@ async function loadProfile() {
     setVal('education', 'Bachelor');
     setVal('major', 'Computer Science - University of Sydney');
     setVal('experience', '5');
+    setVal('workExperience', 'Worked on frontend and backend projects, including dashboard pages, profile forms, and API integration.');
     setVal('workMode', 'Hybrid');
     setVal('summary', 'Passionate developer with extensive experience in modern web technologies.');
     skills = ['React', 'Node.js', 'TypeScript', 'AWS', 'PostgreSQL'];
@@ -71,6 +73,7 @@ async function saveProfile() {
     major:              getVal('major'),
     yearsOfExperience:  parseInt(getVal('experience')) || 0,
     skills:             skills.join(', '),
+    workExperience:     getVal('workExperience'),
     preferredLocation:  getVal('location'),
     preferredWorkMode:  getVal('workMode'),
     resumeText:         getVal('summary')
