@@ -66,6 +66,7 @@ async function login(event) {
       // Save JWT and role
       localStorage.setItem("token", result.token);
       localStorage.setItem("userRole", result.role);
+      localStorage.setItem("membership", result.membership || "BASIC");
     }
 
     if (result.role) {
