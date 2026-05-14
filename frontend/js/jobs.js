@@ -239,7 +239,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-    const res = await fetch(`${API_BASE_URL}/api/job`, {
+    const res = await fetch(`${API_BASE_URL}/job`, {
         headers: { 'Authorization': 'Bearer ' + token }
     });
     if (res.ok) {
@@ -264,9 +264,104 @@ window.addEventListener('DOMContentLoaded', async () => {
     renderJobs(JOBS);
     }
 });
-// ---------------- SEARCH EVENT LISTENERS ----------------
-const searchInput = document.getElementById('search-input');
-const searchBtn = document.getElementById('search-btn');
 
-searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
-searchBtn.addEventListener('click', () => handleSearch(searchInput.value));
+let searchTimer;
+
+function setupBackendJobSearch() {
+  const searchInput = document.getElementById('search-input');
+  const searchBtn = document.getElementById('search-btn');
+  const locationFilter = document.getElementById('location-filter');
+  const workModeFilter = document.getElementById('work-mode-filter');
+  const jobTypeFilter = document.getElementById('job-type-filter');
+  const fuzzyToggle = document.getElementById('fuzzy-toggle');
+
+  if (!searchInput || !searchBtn) return;
+
+  searchInput.addEventListener('input', () => {
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(searchJobsFromBackend, 300);
+  });
+
+  searchBtn.addEventListener('click', searchJobsFromBackend);
+
+  [locationFilter, workModeFilter, jobTypeFilter, fuzzyToggle].forEach(el => {
+    if (el) {
+      el.addEventListener('change', searchJobsFromBackend);
+    }
+  });
+}
+
+async function searchJobsFromBackend() {
+  const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+
+  const q = document.getElementById('search-input')?.value || '';
+  const location = document.getElementById('location-filter')?.value || '';
+  const workMode = document.getElementById('work-mode-filter')?.value || '';
+  const jobType = document.getElementById('job-type-filter')?.value || '';
+  const fuzzy = document.getElementById('fuzzy-toggle')?.checked || false;
+
+  const params = new URLSearchParams();
+
+  if (q.trim()) params.append('q', q.trim());
+  if (location) params.append('location', location);
+  if (workMode) params.append('work_mode', workMode);
+  if (jobType) params.append('job_type', jobType);
+
+  params.append('fuzzy', fuzzy);
+  params.append('page', 0);
+  params.append('size', 20);
+
+  try {
+    const res = await fetch(`${API_BASE_URL}/search/jobs?${params.toString()}`, {
+      headers: token ? { Authorization: 'Bearer ' + token } : {}
+    });
+
+    if (!res.ok) throw new Error('Search failed');
+
+    const data = await res.json();
+    const results = data.content || [];
+
+    const mapped = results.map(item => ({
+      id: item.id,
+      title: item.title,
+      company: item.subtitle,
+      skills: extractSkillsFromSummary(item.summary),
+      location: extractLocationFromSummary(item.summary),
+      type: extractWorkModeFromSummary(item.summary),
+      salary: '',
+      experience: '',
+      description: item.summary || '',
+      score: item.score
+    }));
+
+    renderJobs(mapped);
+
+  } catch (err) {
+    handleSearch(q);
+  }
+}
+
+function extractSkillsFromSummary(summary) {
+  if (!summary) return [];
+
+  const parts = summary.split('|').map(p => p.trim());
+
+  if (parts.length >= 3) {
+    return parts[2].split(',').map(s => s.trim()).filter(Boolean);
+  }
+
+  return [];
+}
+
+function extractLocationFromSummary(summary) {
+  if (!summary) return '';
+  return summary.split('|')[0]?.trim() || '';
+}
+
+function extractWorkModeFromSummary(summary) {
+  if (!summary) return '';
+  return summary.split('|')[1]?.trim() || '';
+}
+
+// ---------------- SEARCH EVENT LISTENERS ----------------
+setupBackendJobSearch();
