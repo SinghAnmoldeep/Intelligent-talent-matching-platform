@@ -1,0 +1,57 @@
+.membership-widget {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.membership-badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.membership-badge.basic {
+  background: #f3f4f6;
+  color: #374151;
+  border: 1px solid #d1d5db;
+}
+
+.membership-badge.premium {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #facc15;
+}
+
+.membership-upgrade-btn,
+.membership-cancel-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.membership-upgrade-btn {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.membership-upgrade-btn:hover {
+  background: var(--color-primary-hover);
+}
+
+.membership-cancel-btn {
+  background: #fff;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.hidden {
+  display: none;
+}
