@@ -182,7 +182,7 @@ async function submitApplication(job) {
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');
 
     try {
-    const res = await fetch(`${API_BASE_URL}/api/job/${job.id}/apply`, {
+    const res = await fetch(`${API_BASE_URL}/jobs/${job.id}/apply`, {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',

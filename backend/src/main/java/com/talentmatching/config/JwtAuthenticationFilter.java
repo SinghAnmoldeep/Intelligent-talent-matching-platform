@@ -1,11 +1,14 @@
 package com.talentmatching.config;
 
+import com.talentmatching.model.User;
+import com.talentmatching.repository.UserRepository;
 import com.talentmatching.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
@@ -13,16 +16,23 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
-// JWT filter that runs once per request
+// JWT filter that runs once per request.
+// Populates SecurityContext with the authenticated user's role as an authority
+// so @PreAuthorize("hasAuthority('EMPLOYER')") and similar guards work.
 @Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;
+    private final UserRepository userRepository;
 
     // Constructor injection
-    public JwtAuthenticationFilter(JwtService jwtService) {
+    public JwtAuthenticationFilter(JwtService jwtService,
+                                   UserRepository userRepository) {
         this.jwtService = jwtService;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -54,12 +64,20 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 // Validate token
                 if (jwtService.isTokenValid(jwt, userEmail)) {
 
-                    // Create authentication object
+                    // Load the user from DB so we know their role.
+                    // The role is published as a Spring authority so @PreAuthorize
+                    // expressions like hasAuthority('EMPLOYER') work in controllers.
+                    Optional<User> optionalUser = userRepository.findByEmail(userEmail);
+                    List<SimpleGrantedAuthority> authorities = optionalUser
+                            .map(u -> List.of(new SimpleGrantedAuthority(u.getRole().name())))
+                            .orElse(Collections.emptyList());
+
+                    // Create authentication object with the user's authorities
                     UsernamePasswordAuthenticationToken authToken =
                             new UsernamePasswordAuthenticationToken(
                                     userEmail,
                                     null,
-                                    Collections.emptyList()
+                                    authorities
                             );
 
                     // Attach request details
