@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/dashboard.css">
+  <link rel="stylesheet" href="../css/membership.css">
 </head>
 <body class="dashboard-body">
 
@@ -51,8 +52,29 @@
 
     <!-- Welcome Banner -->
     <div class="welcome-banner">
-      <h1 class="welcome-title">Welcome back, <span id="user-name">John</span>!</h1>
-      <p class="welcome-sub">Discover your next career opportunity</p>
+      <h1 class="welcome-title">
+        Welcome back, <span id="user-name">John</span>!
+      </h1>
+
+      <p class="welcome-sub">
+        Discover your next career opportunity
+      </p>
+
+      <!-- Membership Widget -->
+      <div id="membership-widget" class="membership-widget">
+        <span id="membership-badge" class="membership-badge basic">
+          BASIC
+        </span>
+
+        <button id="membership-upgrade-btn" class="membership-upgrade-btn">
+          Upgrade to Premium
+        </button>
+
+        <button id="membership-cancel-btn"
+                class="membership-cancel-btn hidden">
+          Cancel
+        </button>
+      </div>
     </div>
 
     <!-- Stats Row -->
@@ -178,6 +200,7 @@
 
   <script src="../js/config.js"></script>
   <script src="../js/utils.js"></script>
+  <script src="../js/membership.js"></script>
   <script src="../js/candidate.js"></script>
   
 
