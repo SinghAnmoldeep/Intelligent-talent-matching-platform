@@ -68,6 +68,43 @@
           <option value="6+">6+ years</option>
         </select>
       </div>
+
+      <div class="search-filters-row">
+
+        <input
+          type="text"
+          id="skills-filter"
+          class="search-filter"
+          placeholder="Skills (React, Java...)">
+
+        <select id="experience-filter" class="search-filter">
+          <option value="">Min experience</option>
+          <option value="1">1+ years</option>
+          <option value="2">2+ years</option>
+          <option value="3">3+ years</option>
+          <option value="5">5+ years</option>
+        </select>
+
+        <select id="preferred-mode-filter" class="search-filter">
+          <option value="">Preferred mode</option>
+          <option value="REMOTE">Remote</option>
+          <option value="ONSITE">Onsite</option>
+          <option value="HYBRID">Hybrid</option>
+        </select>
+
+        <input
+          type="text"
+          id="preferred-location-filter"
+          class="search-filter"
+          placeholder="Preferred location">
+
+        <label class="fuzzy-toggle">
+          <input type="checkbox" id="fuzzy-toggle">
+          Smart match
+        </label>
+
+      </div>      
+
     </div>
 
     <p class="candidate-count" id="candidate-count">Showing 10 candidates</p>
