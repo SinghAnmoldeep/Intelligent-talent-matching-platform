@@ -64,6 +64,36 @@
         </div>
         <button class="btn-search" id="search-btn">Search</button>
       </div>
+
+      <div class="search-filters-row">
+        <select id="location-filter" class="search-filter">
+          <option value="">All locations</option>
+          <option value="Sydney, NSW">Sydney, NSW</option>
+          <option value="Melbourne, VIC">Melbourne, VIC</option>
+          <option value="Brisbane, QLD">Brisbane, QLD</option>
+          <option value="Perth, WA">Perth, WA</option>
+        </select>
+
+        <select id="work-mode-filter" class="search-filter">
+          <option value="">All work modes</option>
+          <option value="REMOTE">Remote</option>
+          <option value="ONSITE">Onsite</option>
+          <option value="HYBRID">Hybrid</option>
+        </select>
+
+        <select id="job-type-filter" class="search-filter">
+          <option value="">All job types</option>
+          <option value="Full-time">Full-time</option>
+          <option value="Part-time">Part-time</option>
+          <option value="Contract">Contract</option>
+          <option value="Internship">Internship</option>
+        </select>
+
+        <label class="fuzzy-toggle">
+          <input type="checkbox" id="fuzzy-toggle">
+          Smart match
+        </label>
+      </div>      
     </div>
 
     <div>
