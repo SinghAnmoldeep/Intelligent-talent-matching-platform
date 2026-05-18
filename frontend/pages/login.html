@@ -20,7 +20,7 @@
 
     <!-- Logo -->
     <div class="logo-circle">
-        <img src="/frontend/assets/Logo.png" alt="Logo" class="logo-img">
+        <img src="/assets/Logo.png" alt="Logo" class="logo-img">
     </div>
 
     <h1 class="title">Welcome back</h1>
@@ -48,11 +48,75 @@
       <a href="signup.html">Sign up</a>
     </p>
 
+    <!-- Demo / test user hints for academic demo -->
+    <details class="demo-users">
+      <summary>Demo test users (click to expand)</summary>
+      <p class="demo-users-note" style="margin-bottom:8px"><strong>Password for ALL demo users: <code>password</code></strong></p>
+      <table class="demo-users-table">
+        <thead>
+          <tr><th>Email</th><th>Role</th><th>Tier</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>alice@test.com</td><td>Candidate</td><td><strong>PREMIUM</strong></td></tr>
+          <tr><td>bob@test.com</td><td>Candidate</td><td>Basic</td></tr>
+          <tr><td>carol@test.com</td><td>Candidate</td><td><strong>PREMIUM</strong></td></tr>
+          <tr><td>david@test.com</td><td>Candidate</td><td>Basic</td></tr>
+          <tr><td>emma@test.com</td><td>Candidate</td><td>Basic</td></tr>
+          <tr><td>techcorp@test.com</td><td>Employer</td><td><strong>PREMIUM</strong></td></tr>
+          <tr><td>startupx@test.com</td><td>Employer</td><td>Basic</td></tr>
+          <tr><td>bigbank@test.com</td><td>Employer</td><td>Basic</td></tr>
+        </tbody>
+      </table>
+      <p class="demo-users-note">Tip: try upgrading a Basic user to Premium and watch the recommendation cap disappear.</p>
+    </details>
+
   </div>
 </div>
 
-<script src="../js/config.js"></script>
-<script src="../js/auth.js"></script>
+<style>
+  .demo-users {
+    margin-top: 18px;
+    padding: 12px 14px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #475569;
+  }
+  .demo-users summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: #334155;
+    user-select: none;
+  }
+  .demo-users summary:hover { color: #0f172a; }
+  .demo-users-table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+  }
+  .demo-users-table th,
+  .demo-users-table td {
+    text-align: left;
+    padding: 6px 8px;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 12px;
+  }
+  .demo-users-table th {
+    font-weight: 600;
+    background: #f1f5f9;
+  }
+  .demo-users-table tr:last-child td { border-bottom: none; }
+  .demo-users-note {
+    margin: 10px 0 0;
+    font-style: italic;
+    color: #64748b;
+    font-size: 11px;
+  }
+</style>
+
+<script src="../js/config.js?v=20260518"></script>
+<script src="../js/auth.js?v=20260518"></script>
 
 </body>
 </html>

@@ -18,7 +18,7 @@
   <nav class="navbar">
     <div class="nav-brand">
       <div class="nav-logo">
-        <img src="/assets/Logo.png" alt="Talent Match Logo" class="logo-img">
+        <img src="/frontend/assets/Logo.png" alt="Talent Match Logo" class="logo-img">
       </div>
       <span class="nav-title">Talent Match</span>
       <span class="nav-portal-badge">| Employer Portal</span>

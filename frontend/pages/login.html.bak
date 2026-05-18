@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Sign Up – Talent Match</title>
+  <title>Login – Talent Match</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,19 +20,14 @@
 
     <!-- Logo -->
     <div class="logo-circle">
-        <img src="/assets/Logo.png" alt="Logo" class="logo-img">
+        <img src="/frontend/assets/Logo.png" alt="Logo" class="logo-img">
     </div>
 
-    <h1 class="title">Create your account</h1>
-    <p class="subtitle">Start your journey with Talent Match</p>
+    <h1 class="title">Welcome back</h1>
+    <p class="subtitle">Login to continue</p>
 
     <!-- FORM -->
-    <form id="signupForm" class="auth-form">
-
-      <div class="form-group">
-        <label>Full Name</label>
-        <input type="text" id="fullName" placeholder="John Doe" required>
-      </div>
+    <form id="loginForm" class="auth-form">
 
       <div class="form-group">
         <label>Email</label>
@@ -44,28 +39,20 @@
         <input type="password" id="password" placeholder="••••••••" required>
       </div>
 
-      <div class="form-group">
-        <label>Role</label>
-        <select id="role" required>
-          <option value="CANDIDATE">Candidate</option>
-          <option value="EMPLOYER">Employer</option>
-        </select>
-      </div>
-
-      <button type="submit" class="btn-primary">Create Account</button>
+      <button type="submit" class="btn-primary">Login</button>
 
     </form>
 
     <p class="auth-footer">
-      Already have an account?
-      <a href="login.html">Login</a>
+      Don’t have an account?
+      <a href="signup.html">Sign up</a>
     </p>
 
   </div>
 </div>
 
-<script src="../js/config.js?v=20260518"></script>
-<script src="../js/auth.js?v=20260518"></script>
+<script src="../js/config.js"></script>
+<script src="../js/auth.js"></script>
 
 </body>
 </html>

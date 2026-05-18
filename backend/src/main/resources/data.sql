@@ -1,33 +1,28 @@
 -- =====================================================================
--- Talent Matching Platform - MySQL seed data (production reference).
+-- H2 in-memory seed data for the Talent Matching Platform (dev / demo).
+-- This file lives on the Spring Boot classpath so it is picked up at
+-- startup by spring.sql.init (mode=always + defer-datasource-init=true).
 --
--- This file is the canonical MySQL seed for production / TA review.
--- For local development we use H2 in-memory; the dev seed lives at
--- backend/src/main/resources/data.sql and is loaded automatically by
--- Spring Boot. Keep the two files in sync when adding new demo data.
---
--- All passwords are the literal word "password" - the hash below is the
+-- All passwords are the literal string "password" - the hash below is the
 -- BCrypt encoding of "password" (cost 10).
 --
--- Candidates: Alice + Carol are PREMIUM (used to demo unlimited
--- recommendations); Bob, David, Emma stay BASIC. TechCorp is the PREMIUM
--- employer; StartupX and Big Bank stay BASIC.
+-- Column names match the JPA-generated schema (snake_case from entity
+-- fields), not the legacy MySQL schema.sql. The canonical MySQL DDL in
+-- ../../../../database/schema.sql is kept as reference for prod deploy.
 -- =====================================================================
 
-USE talent_matching;
-
--- ---------- users ----------
+-- ---------- USERS ----------
 INSERT INTO users (full_name, email, password, role, membership_status, membership_expiry) VALUES
-('Alice Smith',  'alice@test.com',    '$2b$10$V48cvtNwNWCqyqSek9afYuJr8T86Q1MGfIOUObxsCXoyBxVgROWeW', 'CANDIDATE', 'PREMIUM', DATE_ADD(CURRENT_DATE, INTERVAL 30 DAY)),
+('Alice Smith',  'alice@test.com',    '$2b$10$V48cvtNwNWCqyqSek9afYuJr8T86Q1MGfIOUObxsCXoyBxVgROWeW', 'CANDIDATE', 'PREMIUM', DATEADD('DAY', 30, CURRENT_DATE)),
 ('Bob Johnson',  'bob@test.com',      '$2b$10$V48cvtNwNWCqyqSek9afYuJr8T86Q1MGfIOUObxsCXoyBxVgROWeW', 'CANDIDATE', 'BASIC',   NULL),
-('Carol White',  'carol@test.com',    '$2b$10$V48cvtNwNWCqyqSek9afYuJr8T86Q1MGfIOUObxsCXoyBxVgROWeW', 'CANDIDATE', 'PREMIUM', DATE_ADD(CURRENT_DATE, INTERVAL 30 DAY)),
+('Carol White',  'carol@test.com',    '$2b$10$V48cvtNwNWCqyqSek9afYuJr8T86Q1MGfIOUObxsCXoyBxVgROWeW', 'CANDIDATE', 'PREMIUM', DATEADD('DAY', 30, CURRENT_DATE)),
 ('David Brown',  'david@test.com',    '$2b$10$V48cvtNwNWCqyqSek9afYuJr8T86Q1MGfIOUObxsCXoyBxVgROWeW', 'CANDIDATE', 'BASIC',   NULL),
 ('Emma Davis',   'emma@test.com',     '$2b$10$V48cvtNwNWCqyqSek9afYuJr8T86Q1MGfIOUObxsCXoyBxVgROWeW', 'CANDIDATE', 'BASIC',   NULL),
-('TechCorp HR',  'techcorp@test.com', '$2b$10$V48cvtNwNWCqyqSek9afYuJr8T86Q1MGfIOUObxsCXoyBxVgROWeW', 'EMPLOYER',  'PREMIUM', DATE_ADD(CURRENT_DATE, INTERVAL 30 DAY)),
+('TechCorp HR',  'techcorp@test.com', '$2b$10$V48cvtNwNWCqyqSek9afYuJr8T86Q1MGfIOUObxsCXoyBxVgROWeW', 'EMPLOYER',  'PREMIUM', DATEADD('DAY', 30, CURRENT_DATE)),
 ('StartupX HR',  'startupx@test.com', '$2b$10$V48cvtNwNWCqyqSek9afYuJr8T86Q1MGfIOUObxsCXoyBxVgROWeW', 'EMPLOYER',  'BASIC',   NULL),
 ('Big Bank HR',  'bigbank@test.com',  '$2b$10$V48cvtNwNWCqyqSek9afYuJr8T86Q1MGfIOUObxsCXoyBxVgROWeW', 'EMPLOYER',  'BASIC',   NULL);
 
--- ---------- candidate_profiles ----------
+-- ---------- CANDIDATE PROFILES ----------
 -- Includes the Week 8 fields: work_experience, preferred_working_mode, preferred_location.
 INSERT INTO candidate_profiles
   (user_id, contact_number, education, major, years_of_experience, skills,
@@ -54,13 +49,13 @@ VALUES
  '3y building Spring Boot REST APIs for a banking SaaS platform.',
  'HYBRID', 'Sydney');
 
--- ---------- employer_profiles ----------
+-- ---------- EMPLOYER PROFILES ----------
 INSERT INTO employer_profiles (user_id, company_name, contact_email, industry) VALUES
 (6, 'TechCorp', 'hr@techcorp.com', 'Software'),
 (7, 'StartupX', 'hr@startupx.com', 'Fintech'),
 (8, 'Big Bank', 'hr@bigbank.com',  'Banking');
 
--- ---------- job_postings ----------
+-- ---------- JOB POSTINGS ----------
 INSERT INTO job_postings (employer_id, job_title, company_name, description, required_education, required_skills, years_of_experience, work_mode, location) VALUES
 (6, 'Java Backend Developer', 'TechCorp', 'Build REST APIs using Spring Boot',     'Bachelor', 'Java,Spring Boot,MySQL',     2, 'Remote', 'Sydney'),
 (6, 'Full Stack Developer',   'TechCorp', 'Frontend and backend web development', 'Bachelor', 'Java,React,MySQL',           1, 'Hybrid', 'Sydney'),

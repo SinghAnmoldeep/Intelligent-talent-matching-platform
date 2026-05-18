@@ -62,25 +62,26 @@ async function login(event) {
 
     console.log(result);
 
-    if (result.token) {
-      // Save JWT and role
-      localStorage.setItem("token", result.token);
-      localStorage.setItem("userRole", result.role);
-      localStorage.setItem("membership", result.membership || "BASIC");
+    // If backend returned no token, login failed (wrong password,
+    // unknown email, etc). Surface the server's actual message so the
+    // user sees "Invalid password." instead of a generic "Role not found".
+    if (!result.token || !result.role) {
+      alert(result.message || "Login failed. Please try again.");
+      return;
     }
 
-    if (result.role) {
-      // Redirect based on role
-      if (result.role === "CANDIDATE") {
-        window.location.href = "../pages/candidate-dashboard.html";
-      } else if (result.role === "EMPLOYER") {
-        window.location.href = "../pages/employer-dashboard.html";
-      } else {
-        // fallback
-        window.location.href = "../pages/login.html";
-      }
+    // Save JWT, role, and membership tier for the dashboard pages
+    localStorage.setItem("token", result.token);
+    localStorage.setItem("userRole", result.role);
+    localStorage.setItem("membership", result.membership || "BASIC");
+
+    // Redirect based on role
+    if (result.role === "CANDIDATE") {
+      window.location.href = "../pages/candidate-dashboard.html";
+    } else if (result.role === "EMPLOYER") {
+      window.location.href = "../pages/employer-dashboard.html";
     } else {
-      alert("Role not found. Cannot redirect.");
+      alert("Unknown role: " + result.role);
     }
 
   } catch (err) {

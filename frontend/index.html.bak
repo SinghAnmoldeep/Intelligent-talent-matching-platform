@@ -16,7 +16,7 @@
 
       <!-- Logo Icon -->
       <div class="logo-circle">
-        <img src="/assets/Logo.png" alt="Talent Match Logo" class="logo-img">
+        <img src="/frontend/assets/Logo.png" alt="Talent Match Logo" class="logo-img">
       </div>
 
       <!-- Title -->

@@ -20,7 +20,7 @@
 
     <!-- Logo -->
     <div class="logo-circle">
-        <img src="/assets/Logo.png" alt="Logo" class="logo-img">
+        <img src="/frontend/assets/Logo.png" alt="Logo" class="logo-img">
     </div>
 
     <h1 class="title">Create your account</h1>
@@ -64,8 +64,8 @@
   </div>
 </div>
 
-<script src="../js/config.js?v=20260518"></script>
-<script src="../js/auth.js?v=20260518"></script>
+<script src="../js/config.js"></script>
+<script src="../js/auth.js"></script>
 
 </body>
 </html>
