@@ -41,9 +41,11 @@ public class SearchService {
     // -----------------------------------------------------------------
     // Job search
     // -----------------------------------------------------------------
+    // Note: jobType parameter removed - Job entity has no jobType field
+    // and no predicate ever used it. The controller's job_type query param
+    // was dropped at the same time.
     public Page<SearchResultResponse> searchJobs(String q,
                                                  String location,
-                                                 String jobType,
                                                  String workMode,
                                                  boolean fuzzy,
                                                  int page,

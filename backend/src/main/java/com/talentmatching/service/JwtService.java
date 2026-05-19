@@ -4,13 +4,13 @@ import com.talentmatching.model.MembershipStatus;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 
-import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +23,7 @@ public class JwtService {
     public static final String MEMBERSHIP_CLAIM = "membership";
 
     @Value("${jwt.secret}")
-    private String secretKey;
+    private String secret;
 
     @Value("${jwt.expiration}")
     private long jwtExpiration;
@@ -90,9 +90,15 @@ public class JwtService {
                 .getPayload();
     }
 
-    // Convert secret key string into SecretKey
+    // Convert the configured secret string into an HMAC SecretKey.
+    // The secret in application.properties is a plain UTF-8 string, NOT
+    // Base64-encoded, so we use the raw bytes directly. The previous
+    // implementation Base64-encoded then Base64-decoded the value, which
+    // is a no-op at best and corrupts the key derivation if the secret
+    // ever contains characters outside the Base64 alphabet. The configured
+    // secret is 51 bytes, comfortably above the 32-byte HS256 minimum.
     private SecretKey getSignInKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(java.util.Base64.getEncoder().encodeToString(secretKey.getBytes()));
+        byte[] keyBytes = secret.getBytes(StandardCharsets.UTF_8);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }

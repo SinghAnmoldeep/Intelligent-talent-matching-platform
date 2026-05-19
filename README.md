@@ -1,5 +1,7 @@
 🔹 **Intelligent Talent Matching Platform**
 
+Build target: Java 21, Spring Boot 3.3.2
+
 This project is a web-based recruitment system designed to improve the efficiency of job searching and talent acquisition.
 
 The platform supports two types of users:

@@ -23,18 +23,21 @@ public class SearchController {
         this.searchService = searchService;
     }
 
+    // Note: the previous version exposed a job_type query param but the Job
+    // entity has no jobType field and SearchService never filtered on it.
+    // The dead parameter has been removed so the API surface matches what
+    // the backend actually supports.
     @GetMapping("/jobs")
     public ResponseEntity<Page<SearchResultResponse>> searchJobs(
             @RequestParam(required = false) String q,
             @RequestParam(required = false) String location,
-            @RequestParam(name = "job_type", required = false) String jobType,
             @RequestParam(name = "work_mode", required = false) String workMode,
             @RequestParam(defaultValue = "false") boolean fuzzy,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size) {
 
         return ResponseEntity.ok(
-                searchService.searchJobs(q, location, jobType, workMode, fuzzy, page, size)
+                searchService.searchJobs(q, location, workMode, fuzzy, page, size)
         );
     }
 

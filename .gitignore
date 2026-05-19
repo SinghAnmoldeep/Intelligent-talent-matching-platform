@@ -1,2 +1,4 @@
 target/
 .DS_Store
+# leftover sed backup files
+*.bak

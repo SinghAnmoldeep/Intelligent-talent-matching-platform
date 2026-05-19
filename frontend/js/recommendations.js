@@ -106,6 +106,7 @@ async function loadRecommendations() {
 // ---- Render job cards ----
 function renderJobs(jobs, container, countLabel) {
   countLabel.textContent = `Showing top ${jobs.length} recommended jobs`;
+  renderTierHint();
   container.innerHTML = '';
 
   const grid = document.createElement('div');
@@ -163,6 +164,30 @@ function renderJobs(jobs, container, countLabel) {
   });
 
   container.appendChild(grid);
+}
+
+// ---- Render membership tier hint next to count ----
+function renderTierHint() {
+  const countLabel = document.getElementById('rec-count-label');
+  if (!countLabel) return;
+
+  // Re-attach hint span (textContent assignment above wipes children)
+  let hint = document.getElementById('rec-tier-hint');
+  if (!hint) {
+    hint = document.createElement('span');
+    hint.id = 'rec-tier-hint';
+    hint.className = 'tier-hint';
+    countLabel.appendChild(hint);
+  } else if (hint.parentNode !== countLabel) {
+    countLabel.appendChild(hint);
+  }
+
+  const tier = (localStorage.getItem('membership') || 'BASIC').toUpperCase();
+  if (tier === 'PREMIUM') {
+    hint.textContent = 'Premium - unlimited results';
+  } else {
+    hint.textContent = 'Showing top 10 - upgrade to Premium for unlimited results';
+  }
 }
 
 // ---- Apply handler (placeholder – wire to your application endpoint) ----

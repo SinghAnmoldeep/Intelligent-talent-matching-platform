@@ -74,6 +74,15 @@
   padding: 0 2px;
 }
 
+/* ---- Membership Tier Hint ---- */
+.tier-hint {
+  font-style: italic;
+  font-size: 13px;
+  color: #6b7280;
+  margin-left: 8px;
+  opacity: 0.85;
+}
+
 /* ---- Job Cards Grid ---- */
 .job-cards-grid {
   display: grid;
