@@ -2,6 +2,8 @@ package com.talentmatching.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authorization.AuthorizationDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -35,6 +37,15 @@ public class GlobalExceptionHandler {
                 .orElse("Validation failed.");
 
         return buildErrorResponse(HttpStatus.BAD_REQUEST, message);
+    }
+
+    // Return 403 when a @PreAuthorize check denies access (Spring Security 6 throws
+    // AuthorizationDeniedException from method security; older code paths throw the
+    // legacy AccessDeniedException). Without these handlers the generic Exception
+    // handler below would mask both as a 500, hiding real authorisation issues.
+    @ExceptionHandler({AuthorizationDeniedException.class, AccessDeniedException.class})
+    public ResponseEntity<Map<String, Object>> handleAccessDenied(Exception exception) {
+        return buildErrorResponse(HttpStatus.FORBIDDEN, "Access denied.");
     }
 
     // Fallback handler for unexpected exceptions
