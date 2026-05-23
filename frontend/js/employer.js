@@ -107,6 +107,16 @@ async function submitJob() {
     if (res.ok) {
       showToast('Job posted successfully!', 'success');
 
+      // Record the posting as a real activity so the employer dashboard's
+      // "Recent Activity" reflects what just happened.
+      try {
+        addActivity(
+          'posted',
+          'Posted ' + payload.jobTitle + ' position',
+          payload.companyName + (payload.location ? ' · ' + payload.location : '')
+        );
+      } catch (_) {}
+
       setTimeout(() => {
         window.location.href = 'employer-dashboard.html';
       }, 1200);

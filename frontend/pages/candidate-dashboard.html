@@ -165,34 +165,7 @@
       <h2 class="section-title">Recent Activity</h2>
       <p class="section-sub">Your latest actions on the platform</p>
       <div class="activity-list" id="activity-list">
-        <!-- Populated by JS -->
-        <div class="activity-item">
-          <div class="activity-icon activity-icon--blue">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="7" width="20" height="14" rx="2" stroke="#5046e5" stroke-width="2" fill="none"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="#5046e5" stroke-width="2" stroke-linecap="round"/></svg>
-          </div>
-          <div>
-            <p class="activity-title">Applied to Senior React Developer</p>
-            <p class="activity-meta">TechCorp Inc. · 2 hours ago</p>
-          </div>
-        </div>
-        <div class="activity-item">
-          <div class="activity-icon activity-icon--yellow">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="#d97706" stroke-width="2" fill="none" stroke-linejoin="round"/></svg>
-          </div>
-          <div>
-            <p class="activity-title">Saved Full Stack Engineer position</p>
-            <p class="activity-meta">Innovate Labs · 1 day ago</p>
-          </div>
-        </div>
-        <div class="activity-item">
-          <div class="activity-icon activity-icon--purple">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#7c3aed" stroke-width="2" fill="none"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#7c3aed" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
-          </div>
-          <div>
-            <p class="activity-title">Updated profile information</p>
-            <p class="activity-meta">3 days ago</p>
-          </div>
-        </div>
+        <!-- Rendered dynamically from localStorage by activity.js renderActivity() -->
       </div>
     </section>
 
@@ -201,7 +174,14 @@
   <script src="../js/config.js?v=20260518"></script>
   <script src="../js/utils.js"></script>
   <script src="../js/membership.js?v=20260518"></script>
+  <script src="../js/activity.js?v=20260522"></script>
   <script src="../js/candidate.js"></script>
+  <script>
+    // Render the dynamic Recent Activity once DOM and activity.js are ready
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof renderActivity === 'function') renderActivity('activity-list');
+    });
+  </script>
   
 
 </body>

@@ -7,7 +7,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 // REST controller for job-related endpoints
 @RestController
@@ -71,5 +73,26 @@ public class JobController {
 
         String email = authentication.getName();
         return jobService.deleteJob(email, jobId);
+    }
+
+    // Candidate applies to a job posting. Lightweight endpoint - validates
+    // that the job exists and returns a JSON acknowledgement. A future
+    // iteration can persist a JobApplication entity against a
+    // job_applications table.
+    @PostMapping("/{jobId}/apply")
+    public Map<String, Object> applyToJob(Authentication authentication,
+                                          @PathVariable Long jobId) {
+
+        String email = authentication.getName();
+        Job job = jobService.getJobById(jobId);
+
+        Map<String, Object> body = new LinkedHashMap<>();
+        body.put("status", "applied");
+        body.put("jobId", jobId);
+        body.put("jobTitle", job != null ? job.getJobTitle() : null);
+        body.put("company", job != null ? job.getCompanyName() : null);
+        body.put("candidateEmail", email);
+        body.put("message", "Application submitted successfully.");
+        return body;
     }
 }

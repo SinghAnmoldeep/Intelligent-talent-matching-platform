@@ -182,7 +182,8 @@ async function submitApplication(job) {
     const token = localStorage.getItem('token') || sessionStorage.getItem('token');
 
     try {
-    const res = await fetch(`${API_BASE_URL}/jobs/${job.id}/apply`, {
+    // Backend endpoint is /api/job/{id}/apply (singular "job"), not "/jobs/"
+    const res = await fetch(`${API_BASE_URL}/job/${job.id}/apply`, {
         method: 'POST',
         headers: {
         'Content-Type': 'application/json',
@@ -193,6 +194,10 @@ async function submitApplication(job) {
     if (res.ok) {
         closeModal();
         showToast(`Applied to ${job.title} successfully!`);
+        // Record the application as a real activity item on this device so
+        // the candidate dashboard's "Recent Activity" reflects what just
+        // happened (rather than the hard-coded placeholder text).
+        try { addActivity('applied', `Applied to ${job.title}`, job.company); } catch (_) {}
     } else {
         const err = await res.json().catch(() => ({}));
         btn.textContent = 'Apply Now';
@@ -203,6 +208,7 @@ async function submitApplication(job) {
     // Backend not available — simulate success for demo
     closeModal();
     showToast(`Applied to ${job.title}!`);
+    try { addActivity('applied', `Applied to ${job.title}`, job.company); } catch (_) {}
     }
 }
 
@@ -244,19 +250,26 @@ window.addEventListener('DOMContentLoaded', async () => {
     });
     if (res.ok) {
         const data = await res.json();
-        // Map API shape → UI shape
+        // Map API shape → UI shape.
+        // Backend Job entity exposes: id, jobTitle, companyName, description,
+        // requiredEducation, requiredSkills (comma-separated string),
+        // yearsOfExperience, workMode, location. No salary or jobType fields.
         const mapped = data.map(j => ({
-        id: j.id || j.jobId,
-        title: j.title || j.jobTitle,
-        company: j.company || j.companyName || 'Unknown',
-        skills: Array.isArray(j.skills) ? j.skills : (j.skills || '').split(',').map(s => s.trim()).filter(Boolean),
-        location: j.location || '',
-        type: j.jobType || j.type || 'Full-time',
-        salary: j.salary || j.salaryRange || '',
-        experience: j.experienceRequired || j.experience || '',
+        id: j.id,
+        title: j.jobTitle || j.title || 'Untitled',
+        company: j.companyName || j.company || 'Unknown',
+        skills: (j.requiredSkills || j.skills || '')
+                  .split(',').map(s => s.trim()).filter(Boolean),
+        location: j.location || 'Not specified',
+        type: j.workMode || j.type || 'Full-time',
+        salary: j.salary || 'Salary on application',
+        experience: (j.yearsOfExperience != null
+                      ? j.yearsOfExperience + '+ years'
+                      : (j.experience || 'Any')),
         description: j.description || j.jobDescription || ''
         }));
-        renderJobs(mapped.length ? mapped : JOBS);
+        allJobs = mapped.length ? mapped : JOBS;
+        renderJobs(allJobs);
     } else {
         renderJobs(JOBS);
     }

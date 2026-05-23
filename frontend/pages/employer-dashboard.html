@@ -144,29 +144,8 @@
           <h2 class="section-title">Recent Activity</h2>
           <p class="section-sub">Your latest actions on the platform</p>
         </div>
-
-        <div class="activity-item">
-          <div class="activity-icon activity-icon--blue">💼</div>
-          <div>
-            <p class="activity-title">Posted Senior React Developer position</p>
-            <p class="activity-meta">2 hours ago · 24 applicants</p>
-          </div>
-        </div>
-
-        <div class="activity-item">
-          <div class="activity-icon activity-icon--yellow">📄</div>
-          <div>
-            <p class="activity-title">Interview scheduled with Sarah Johnson</p>
-            <p class="activity-meta">Full Stack Engineer · Tomorrow at 2:00 PM</p>
-          </div>
-        </div>
-
-        <div class="activity-item">
-          <div class="activity-icon activity-icon--purple">👥</div>
-          <div>
-            <p class="activity-title">Reviewed 15 candidate profiles</p>
-            <p class="activity-meta">3 days ago</p>
-          </div>
+        <div id="activity-list">
+          <!-- Rendered dynamically from localStorage by activity.js renderActivity() -->
         </div>
       </div>
     </section>
@@ -175,7 +154,14 @@
 
   <script src="../js/config.js?v=20260518"></script>
   <script src="../js/membership.js?v=20260518"></script>
+  <script src="../js/activity.js?v=20260522"></script>
   <script src="../js/employer.js"></script>
+  <script>
+    // Render the dynamic Recent Activity once DOM and activity.js are ready
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof renderActivity === 'function') renderActivity('activity-list');
+    });
+  </script>
 
 </body>
 </html>
